@@ -6,6 +6,9 @@ let blogschema = mongoose.Schema({
   },
   name:{
     type:String
+  },
+  explanation:{
+    type:String
   }
 })
 

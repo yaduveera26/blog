@@ -7,7 +7,7 @@ app.set('view engine','ejs')
 app.use(bodyparser.urlencoded({extended:false}))
 app.use(bodyparser.json())
 
-mongoose.connect(`mongodb+srv://yadu:1234@cluster0.0kdvi.mongodb.net/blog?retryWrites=true&w=majority`,{useNewUrlParser:true,useUnifiedTopology:true})
+mongoose.connect('mongodb+srv://yadu:1234@cluster0.0kdvi.mongodb.net/blog?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology:true})
 const db = mongoose.connection
 const Blog = require('./models/blogschema')
 
@@ -29,7 +29,7 @@ app.get('/',(req,res)=>{
     if(err)
     console.log(err);
     else {
-      console.log(blogs);
+      // console.log(blogs);
       res.render('home',{blogs:blogs})
     }
   })
@@ -42,12 +42,14 @@ app.get('/writeblog',(req,res)=>{
 app.post('/writeblog',(req,res)=>{
   let text = req.body.text;
   let name = req.body.name;
-  if(!text || !name)
+  let explanation = req.body.explanation;
+  if(!text || !name || !explanation)
   console.log('please fill all fields');
   else {
     let newBlog = new Blog();
     newBlog.name = name;
     newBlog.text = text;
+    newBlog.explanation = explanation;
     newBlog.save((err)=>{
       if(err)
       console.log(err);

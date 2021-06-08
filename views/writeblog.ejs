@@ -9,14 +9,24 @@
   </head>
   <body>
     <div class="container-md container-fluid">
-      <a href="/" class="btn btn-secondary my-3 fw-bold">Home</a>
+      <div class="my-3 w-100 d-flex flex-column justify-content-around align-items-center">
+        <div class="fw-bold fs-1 mx-3 my-1 my-md-3 text-center" style="width:70%">
+          Blog
+        </div>
+        <div class="">
+          <a href="/" style="text-decoration:none" class="btn btn-secondary fw-bold">Home</a>
+        </div>
+      </div>
+      <!-- <a href="/" class="btn btn-secondary my-3 fw-bold">Home</a> -->
 
       <form class="" action="/writeblog" method="post">
-        <label for="name" class="form-label mb-3">Name</label>
+        <label for="name" class="form-label mb-3 fw-bold">Problem Name :</label>
         <input type="text" name="name" class="form-control mb-3" value="">
-        <label for="text" class="form-label mb-3">Write Blog</label>
+        <label for="text" class="form-label mb-3 fw-bold">Write Code :</label>
         <textarea name="text" rows="10" cols="80" class="form-control mb-3"></textarea>
-        <button type="submit" name="button" class="btn btn-warning fw-bold text-white">Submit</button>
+        <label for="explanation" class="form-label mb-2 fw-bold">Explanation :</label>
+        <textarea name="explanation" rows="4" cols="80" class="form-control mb-2"></textarea>
+        <button type="submit" name="button" class="btn btn-warning w-100 fs-4 fw-bold text-white">Submit</button>
       </form>
     </div>
   </body>
