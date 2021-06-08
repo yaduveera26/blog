@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+  </head>
+  <body>
+    <div class="">
+      <a href="/writeblog">write blog</a><br>
+    </div>
+    <%blogs.forEach(function(blog){ %>
+      <span><%=blog.name%></span><br>
+      <code>
+        <%= blog.text %>
+      </code>
+    <%})%>
+  </body>
+</html>
