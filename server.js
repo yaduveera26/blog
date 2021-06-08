@@ -7,7 +7,7 @@ app.set('view engine','ejs')
 app.use(bodyparser.urlencoded({extended:false}))
 app.use(bodyparser.json())
 
-mongoose.connect('mongodb://localhost/blog',{useNewUrlParser:true,useUnifiedTopology:true})
+mongoose.connect(`mongodb+srv://yadu:1234@cluster0.0kdvi.mongodb.net/blog?retryWrites=true&w=majority`,{useNewUrlParser:true,useUnifiedTopology:true})
 const db = mongoose.connection
 const Blog = require('./models/blogschema')
 
