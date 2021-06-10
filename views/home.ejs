@@ -5,8 +5,7 @@
     <title>Blog</title>
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-<link href="css/shCore.css" rel="stylesheet" type="text/css" />
-  <link href="css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
   </head>
   <body>
     <div class="container-md container-fluid">
@@ -23,14 +22,48 @@
           <span class="card-header fw-bold"><%=blog.name%></span><br>
           <pre class='brush: cpp w-100 m-auto card-body'>
             <code class="w-100 m-auto">
-              <%= blog.text %>
+              <%=blog.text%>
             </code>
           </pre>
-          <div class="card-footer">
-            <span class="fw-bold">Explanation : </span><%=blog.explanation%>
+          <div class="card-footer d-flex justify-content-around align-items-start">
+            <div class="d-flex flex-column justify-content-around align-items-center">
+              <button type="button" name="button" class="btn btup" onclick="like('<%=blog._id%>')"><i class="fa fa-angle-up"></i><span class="blog_likes" id="like<%=blog._id%>" ><%=blog.likes%></span></button>
+              <button type="button" name="button" class="btn btdn" onclick="dislike('<%=blog._id%>')"><i class="fa fa-angle-down"></i><span class="blog_dislikes" id="dislike<%=blog._id%>"><%=blog.dislikes%></span></button>
+            </div>
+            <div class="" style="width:90%">
+              <span class="fw-bold">Explanation : </span><%=blog.explanation%>
+
+            </div>
           </div>
         </div>
         <%})%>
     </div>
+    <script type="text/javascript">
+      // document.querySelector('.btup').addEventListener('click',like);
+      function like(id)
+      {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET','/like/'+id,true);
+        xhr.onload = function(){
+          let text = parseInt(document.querySelector(`#like${id}`).innerText);
+          text = text+1;
+          document.querySelector(`#like${id}`).innerText = text;
+        }
+        xhr.send();
+      }
+
+      // document.querySelector('.btdn').addEventListener('click',dislike);
+      function dislike(id)
+      {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET','/dislike/'+id,true);
+        xhr.onload = function(){
+          let text = parseInt(document.querySelector(`#dislike${id}`).innerText);
+          text = text+1;
+          document.querySelector(`#dislike${id}`).innerText = text;
+        }
+        xhr.send();
+      }
+    </script>
   </body>
 </html>

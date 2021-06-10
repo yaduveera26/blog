@@ -50,6 +50,8 @@ app.post('/writeblog',(req,res)=>{
     newBlog.name = name;
     newBlog.text = text;
     newBlog.explanation = explanation;
+    newBlog.likes = 0;
+    newBlog.dislikes = 0;
     newBlog.save((err)=>{
       if(err)
       console.log(err);
@@ -59,6 +61,32 @@ app.post('/writeblog',(req,res)=>{
       }
     });
   }
+})
+
+app.get('/like/:id',(req,res)=>{
+  Blog.findOne({_id:req.params.id},(err,blog)=>{
+    blog.likes+=1;
+    blog.save(err=>{
+      if(err)
+      console.log(err);
+      else {
+        res.send('hello world')
+      }
+    })
+  })
+})
+
+app.get('/dislike/:id',(req,res)=>{
+  Blog.findOne({_id:req.params.id},(err,blog)=>{
+    blog.dislikes+=1;
+    blog.save(err=>{
+      if(err)
+      console.log(err);
+      else {
+        res.send('hello world')
+      }
+    })
+  })
 })
 
 const port = process.env.PORT || 3000

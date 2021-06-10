@@ -9,6 +9,12 @@ let blogschema = mongoose.Schema({
   },
   explanation:{
     type:String
+  },
+  likes:{
+    type:Number
+  },
+  dislikes:{
+    type:Number
   }
 })
 
